@@ -1,18 +1,22 @@
-import { Directive, HostBinding, OnInit, ElementRef } from '@angular/core';
+import { Directive, HostBinding, OnInit, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
     selector: '[appDropdown]'
 })
 export class DropdownDirective implements OnInit {
-    //@HostBinding('style.') style: string;
+    @HostBinding('className') buttonStatus: string;
 
-    //constructor(private elRef = ElementRef) { }
+    constructor (private elRef: ElementRef) { }
 
     ngOnInit() {
-       // console.log('Element=', this.elRef)
+       console.log('Element=', this.elRef)
     }
 
-    // onClicked() {
-        
-    // }
+    @HostListener('click') onClicked() {
+        if(this.buttonStatus === "btn-group open") {
+            this.buttonStatus = "btn-group"
+        } else {
+            this.buttonStatus = "btn-group open"
+        }
+    }
 }
