@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipe-book';
+  userSelection: string = '';
+
+
+  onClickEventReceived(receivedEvent: string) {
+    console.log(receivedEvent);
+    this.userSelection = receivedEvent;
+  }
+
+  checkUserSelection() {
+    return this.userSelection;
+  }
 }
