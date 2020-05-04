@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,27 +8,24 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  @Output() userSelectedRecipe = new EventEmitter<Recipe>();
-
-  recipes: Recipe[] = [
-    new Recipe('Pork ribs', 'Easy and quick recipe', 'https://dfbkuy5licyr9.cloudfront.net/wp-content/uploads/2020/01/BBQ-Ribs.jpg?x89177'),
-    new Recipe('Chocolate Cake', 'Classic Chocolate Cake recipe', 'https://www.thespruceeats.com/thmb/q--AvE8xgyWLLgHLQ_ZjdQr2H84=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/classic-and-easy-chocolate-cake-recipe-995137_14_preview-5afc9a2743a1030037167eff.jpeg'),
-    new Recipe('Test Recipe2', 'This is simply a test', 'https://dfbkuy5licyr9.cloudfront.net/wp-content/uploads/2020/01/BBQ-Ribs.jpg?x89177'),
-  ];
-
-  constructor() { }
+  // @Output() userSelectedRecipe = new EventEmitter<Recipe>();
+  recipes: Recipe[];
+  
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    this.recipes = this.recipeService.getRecipes();
+    // console.log('Recipes=', this.recipes);
   }
 
-  onItemSelected(recipeData: Recipe){
-    console.log('recipeData=', recipeData);
-    this.userSelectedRecipe.emit({
-      name: recipeData.name,
-      description: recipeData.description,
-      imagePath: recipeData.imagePath
-    })
+  // onItemSelected(recipeData: Recipe){
+  //   console.log('recipeData=', recipeData);
+  //   this.userSelectedRecipe.emit({
+  //     name: recipeData.name,
+  //     description: recipeData.description,
+  //     imagePath: recipeData.imagePath
+  //   })
 
-  }
+  // }
 
 }

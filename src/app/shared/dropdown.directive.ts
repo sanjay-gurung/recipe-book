@@ -9,7 +9,7 @@ export class DropdownDirective implements OnInit {
     constructor (private elRef: ElementRef) { }
 
     ngOnInit() {
-       console.log('Element=', this.elRef)
+       // console.log('Element=', this.elRef)
     }
 
     @HostListener('click') onClicked() {
