@@ -1,4 +1,4 @@
-import { Component, Output,EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -7,15 +7,5 @@ import { Component, Output,EventEmitter } from '@angular/core';
     
 })
 export class HeaderComponent {
-    @Output() selection = new EventEmitter<string>();
-
-    onClick(userAction: string) {
-        if(userAction === 'Recipes clicked') {
-            this.selection.emit('Recipes');
-        } else {
-            this.selection.emit('Shopping List');
-        }
-
-    }
 
 }

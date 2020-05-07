@@ -2,10 +2,7 @@
     <div class="col-md-5">
         <app-recipe-list ></app-recipe-list>
     </div>
-    <div class="col-md-7" *ngIf="selectedRecipeDetail; else renderText">
-        <app-recipe-detail [selectedRecipeDetail]=" selectedRecipeDetail "></app-recipe-detail>
+    <div class="col-md-7">
+        <router-outlet></router-outlet>
     </div>
-    <ng-template #renderText>
-        <p>Please select a recipe from the list</p>
-    </ng-template>
 </div>
