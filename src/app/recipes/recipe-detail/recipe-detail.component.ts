@@ -30,12 +30,12 @@ export class RecipeDetailComponent implements OnInit {
     
   }
 
-  onAddToSL(){
+  onAddToSL() {
     this.shoppingListService.addIngredientsToSL(this.selectedRecipeDetail.ingredients)
   }
-  
-  // onItemSelected(itemData: any) {
-  //   console.log('itemData=', itemData);
-  // }
+
+  onDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.id);
+  }
 
 }

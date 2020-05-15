@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  // @ViewChild('nameInput') inputName: Ingredient;
+  @ViewChild('nameInput') inputName: Ingredient;
   ingredients: Ingredient[];
   private ingredientChangeSub: Subscription; 
 
@@ -22,6 +22,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       (ingredients: Ingredient[]) => { 
           this.ingredients = ingredients;
       })
+  }
+
+  onEditItem(index: number) {
+    this.shoppingListService.startedEditing.next(index);
   }
 
   ngOnDestroy() {
