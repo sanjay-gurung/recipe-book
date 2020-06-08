@@ -6,13 +6,14 @@ import { Recipe } from '../recipes/recipe.model';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
+    BASE_URL = 'https://recipe-book-7a044.firebaseio.com/recipes.json'
     constructor(
         private http: HttpClient,
         private receipService: RecipeService) {}
 
     storeRecipes() {
         const recipes = this.receipService.getRecipes();
-        this.http.put('https://recipe-book-7a044.firebaseio.com/recipes.json', recipes)
+        this.http.put( this.BASE_URL, recipes)
             .subscribe((response) => {
                 console.log(response);
             })
@@ -20,7 +21,7 @@ export class DataStorageService {
     }
 
     fetchRecipes(){
-        return this.http.get<Recipe[]>('https://recipe-book-7a044.firebaseio.com/recipes.json')
+        return this.http.get<Recipe[]>(this.BASE_URL)   
             .pipe(
                 map((recipes) => {
                     return recipes.map((recipe) => {
@@ -29,7 +30,7 @@ export class DataStorageService {
                 }),
                 tap((recipes) => {
                     this.receipService.setRecipes(recipes);
-                })
+                })  
             )
     }
     
