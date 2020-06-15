@@ -14,7 +14,7 @@ export class RecipeItemComponent implements OnInit {
   @Input() index: number;
   // @Output() selectedItem = new EventEmitter<any>();
 
-  constructor(private route: ActivatedRoute) { }
+  //constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {}
 
