@@ -16,7 +16,8 @@ exports.config = {
     browserName: 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  //baseUrl: 'http://localhost:4200/',
+  baseUrl: 'https://recipe-book-7a044.web.app/recipes',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

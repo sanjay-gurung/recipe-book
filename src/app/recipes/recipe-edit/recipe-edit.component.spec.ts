@@ -1,4 +1,4 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule} from '@angular/router/testing';
 import { RecipeEditComponent } from './recipe-edit.component';
 import { RecipeService } from '../recipe.service';
@@ -9,7 +9,8 @@ describe('Recipe Edit Component', () => {
     let component: RecipeEditComponent;
     let fixture: ComponentFixture<RecipeEditComponent>;
     let service: RecipeService;
-    let spy: any;
+    let mockAddRecipe: any;
+
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -24,7 +25,9 @@ describe('Recipe Edit Component', () => {
         fixture = TestBed.createComponent(RecipeEditComponent);
         component = fixture.componentInstance;
         component.ngOnInit();
-        service = new RecipeService;
+        service = TestBed.get(RecipeService);
+        mockAddRecipe = jasmine.createSpy('DummyAddRecipe');
+        mockAddRecipe('Dummy recipe');
         fixture.detectChanges();
     })
 
@@ -62,21 +65,26 @@ describe('Recipe Edit Component', () => {
         expect(button.disabled).toBeFalsy();
     });
 
-    // it('should be able to submit a new recipe', () => {
-    //     let name = component.recipeForm.controls['name'];
-    //     let imageUrl = component.recipeForm.controls['imageUrl'];
-    //     let description = component.recipeForm.controls['description'];
-    //     name.setValue('Test Recipe');
-    //     imageUrl.setValue('www.test.com');
-    //     description.setValue('Test description');
-    //     //component.onSubmit();
-        
-        
-        
-    //     spy = spyOn(service, "addRecipe");
-    //     fixture.detectChanges();
-    //     expect(service.addRecipe).toHaveBeenCalled();
+    // it('should check mockAddRecipe is defiled', () => {
+    //     expect(mockAddRecipe).toBeDefined();
     // })
 
+    // it('should check mockAddRecipe is called', () => {
+    //     expect(mockAddRecipe).toHaveBeenCalled();
+    // })
+
+    it('should call addRecipe method when user is adding new recipe', () => {
+        spyOn(service, 'addRecipe');
+        component.editMode = false;
+        component.onSubmit();
+        expect(service.addRecipe).toHaveBeenCalled();
+    })
+
+    it('should call updateRecipe method when user is editing existing recipe', () => {
+        spyOn(service, 'updateRecipe');
+        component.editMode = true;
+        component.onSubmit();
+        expect(service.updateRecipe).toHaveBeenCalled();
+    })
 
 });
