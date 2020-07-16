@@ -9,7 +9,6 @@ import { HeaderComponent } from './header/header.component';
 import { ShoppingListService } from './shopping-list/shoppingList.service';
 import { RecipeService } from './recipes/recipe.service';
 import { RecipesModule } from './recipes/recipes.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     RecipesModule,
-    ShoppingListModule,
     SharedModule
   ],
   providers: [ShoppingListService, RecipeService],
