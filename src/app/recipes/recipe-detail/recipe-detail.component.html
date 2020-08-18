@@ -21,6 +21,12 @@
                 <li><a (click)="onDeleteRecipe()" id="deleteRecipe"routerLink="/recipes" style="cursor: pointer">Delete Recipe</a></li>
             </ul>
         </div>
+        <div *ngIf="ingredientAddedToSL"
+            class="alert alert-success alert-dismissible"
+            style="margin-top: 15px">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success! </strong>Ingredients have been added to the shopping list.
+        </div>
     </div>
 </div>
 <!-- <app-recipe-list (selectedItem)="onItemSelected($event)"></app-recipe-list> -->
